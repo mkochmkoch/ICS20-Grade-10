@@ -1,56 +1,64 @@
-//initialize the variables
-var circleWidth = 500;
-var circleHeight = 500;
-var circleX = 400;
-var circleY = 300;
+/* U5A1 Car Assignment 2.0
+This program will draw a high way and multiple cars using functions
+Matthew Koch - 2020/04/17 */
 
+/* Set up function */
 function setup() {
-  // put setup code here
-  createCanvas(800,600);
+  createCanvas(800, 600);
+  background(99, 159, 255);
 }
 
+/* Main draw function */
 function draw() {
-  // put drawing code here
+  //Draw car1
+  var carLocationX = 100;
+  var carLocationY = 120;
+  var carWidth = 130;
+  var carHeight = 80;
 
-  //first circle
-  fill(147, 82, 163);
-  ellipse(circleX, circleY, circleWidth, circleHeight);
+  //drawCar(carLocationX, carLocationY, carWidth, carHeight, 'black');
+  //drawCar(carLocationX, carLocationY, 30, 20, 'green');
 
-  //Divide the width and height of the circle by 2
-  circleWidth = circleWidth / 2;
-  circleHeight = circleHeight / 2;
+  drawHighway(0, 50, 3, 'east');
+}
 
-  //second circle
-  fill(0,255,0);
-  ellipse(circleX, circleY, circleWidth, circleHeight);
+/* Draws car with parameters
+  Location (x, y)
+  Size (width, height)
+  Colour
+*/
+function drawCar(positionX, positionY, width, height, color) {
+  fill(color);
+  rect(positionX, positionY, width, height);
 
+  //ellipse(positionX + 8,positionY + 20, 10);
+  //ellipse(positionX + 23,positionY + 20, 10);
+  //adding details
+  //rect(positionX + 130, positionY, width - 40, height - 20, 10)
+}
 
+/* Draws a lane with 4 cars going in same direction on one lane of a road. Take in parameters for the lane location, direction, color, etc.
+ */
 
-  //Divide the width and height of the circle by 2
-  circleWidth = circleWidth / 2;
-  circleHeight = circleHeight / 2;
+function drawLane(x, y, w, h, direction, c) {
+  fill(c);
+  rect(x, y, w, h);
+  drawCar(x, y, 30, 20, "green");
+  drawCar(x + 50, y, 30, 20, "red");
+  drawCar(x + 100, y, 30, 20, "yellow");
+  drawCar(x + 150, y, 30, 20, "blue");
+}
 
-  //third circle
-  fill(0,0,255);
-  ellipse(circleX, circleY, circleWidth, circleHeight);
+/* Draws the highway with draws 6 highway lanes. Take in parameters for the highway location, directions (i.e. #of lanes per direction), color, etc. Call the drawLane() function to draw the lanes.
 
-  //Divide the width and height of the circle by 2
-  circleWidth = circleWidth / 2;
-  circleHeight = circleHeight / 2;
-
-  //fourth circle
-  fill(255,255,0);
-  ellipse(circleX, circleY, circleWidth, circleHeight);
-
-  //Divide the width and height of the circle by 2
-  circleWidth = circleWidth / 2;
-  circleHeight = circleHeight / 2;
-
-  //fifth circle
-  fill(0,255,255);
-  ellipse(circleX, circleY, circleWidth, circleHeight);
-
-
-  noLoop();
-
+*/
+function drawHighway(x, y, numLanesPerDirection, direction) {
+  //drawLane(0, 50, 800, 70, "northBound",'grey');
+var yPosition = 0;
+  for (lanenum = 0; lanenum< numLanesPerDirection; lanenum++) {
+    drawLane(0, lanenum * 73, 800, 70, direction, "grey");
+  }
+  for (lanenum = 0; lanenum< numLanesPerDirection; lanenum++) {
+    drawLane(0, lanenum * 73 + 230, 800, 70, direction, "grey");
+  }
 }
