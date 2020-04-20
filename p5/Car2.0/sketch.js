@@ -56,10 +56,15 @@ function drawLane(x, y, w, h, direction, c) {
   rect(x, y, w, h);
 
   //Draw 4 cars
-  drawCar(x + 50, y, 30, 20, "green", direction);
-  drawCar(x + 175, y, 30, 20, "red", direction);
-  drawCar(x + 300, y, 30, 20, "purple", direction);
-  drawCar(x + 425, y, 30, 20, "blue", direction);
+  let spacings = [10, 15, 18, 13, 20, 21, 14, 8, 6, 3, 12, -3];
+  let spacing = random(spacings); // select random space
+
+  let colours = ["red", "purple", "green", "blue", "yellow"];
+  let colour = random(colours); // select random colour
+  drawCar(x + 50 + spacing * 4, y, 30, 20, colour, direction);
+  drawCar(x + 175 + spacing * 3, y, 30, 20, colour, direction);
+  drawCar(x + 300 + spacing * 5, y, 30, 20, colour, direction);
+  drawCar(x + 425 + spacing * 7, y, 30, 20, colour, direction);
 
   dottedLine(x, y);
 }
